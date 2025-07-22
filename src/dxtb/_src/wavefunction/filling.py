@@ -363,4 +363,5 @@ def get_fermi_occupation(
             # check if beta channel is empty
             return torch.where(not_empty, fermi, torch.zeros_like(fermi))
 
-    raise RuntimeError("Fermi energy failed to converge.")
+    filling = torch.where(not_empty, fermi, torch.zeros_like(fermi))
+    raise RuntimeError("Fermi energy failed to converge.", filling)
